@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'antd/dist/antd.css';
+import styled from 'styled-components';
+import { Typography } from 'antd';
+import { Button } from 'antd';
+
+import TaskComponent from './Components/Task';
+
+const AppWrapper = styled.div`
+  border: 2px solid black;
+  width: 600px;
+  min-height: 100vh;
+  margin: auto;
+`;
 
 function App() {
+  const { Title } = Typography;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper>
+      <Title level={2}>   Translate this sentence</Title>
+      <TaskComponent />
+      <Button>
+        Check
+      </Button>
+    </AppWrapper>
+
   );
 }
 
