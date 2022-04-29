@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import { useDraggable } from '@dnd-kit/core';
-import { Typography, Image, Button } from 'antd';
+
+import * as T from '../modules/modules';
 
 const ContainerForWords = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 16px;
-  justify-content: flex-start;
+   display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    align-content: space-between;
+    margin-bottom: 50px;
+
 `;
 
 const Word = styled.button`
@@ -33,25 +37,30 @@ const EmptyWord = styled.button`
   padding: 4px 18px;
 `
 
-const Words = () => {
-  const arrayWords = [
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    'word1',
-    '',
-    '',
-  ]
+interface Props {
+  text: T.PhraseForTranslate,
+  randomWords: T.RandomWord
+}
 
+const Words: React.FC<Props> = ({ text, randomWords }) => {
+  const [wordsForDisplay, setWordsForDisplay] = useState<string[]>([]);
+
+  const arrayWords = text.phraseOnEnglish.split(' ');
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: '2323',
   });
+
+  const createListWordsForAnswer = (arrayWords: string[], randomWords: T.RandomWord) => {
+    if (arrayWords.length < 12) {
+      const count = 12 - (arrayWords.length + 1);
+      const wordsForDisplay: string[] = [...arrayWords, ...randomWords.words.slice(0, count + 1)];
+      setWordsForDisplay(wordsForDisplay);
+    }
+  }
+
+  useEffect(() => {
+    createListWordsForAnswer(arrayWords, randomWords)
+  }, [text])
 
   const style = transform ? {
 
@@ -60,7 +69,7 @@ const Words = () => {
 
   return (
     <ContainerForWords>
-      {arrayWords.map((word, index) => {
+      {wordsForDisplay.map((word, index) => {
         if (!!word.length) {
           return <Word
             ref={setNodeRef}

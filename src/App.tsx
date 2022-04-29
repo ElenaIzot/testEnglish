@@ -9,6 +9,7 @@ import { Button } from 'antd';
 import TaskComponent from './Components/Task';
 import FieldForAnswer from './Components/FieldForAnswer';
 import Words from './Components/Words';
+import { phraseForTranslate, randomWord } from './Components/dataApp';
 
 const AppWrapper = styled.div`
   width: 600px;
@@ -40,13 +41,13 @@ function App() {
 
   return (
     <AppWrapper>
-      <Title level={2}>   Translate this sentence</Title>
-      <TaskComponent />
+      <Title level={2}>Translate this sentence</Title>
+      <TaskComponent text={phraseForTranslate} />
 
       <DndContext>
         <div>
           <FieldForAnswer />
-          <Words />
+          <Words text={phraseForTranslate} randomWords={randomWord} />
         </div>
 
         {/* Draggable */}
