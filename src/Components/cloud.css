@@ -1,0 +1,32 @@
+.bubble {
+	position: relative;
+	width: 300px;
+	text-align: center;
+	margin: 0 20px 70px;
+	border: 3px solid #333;
+	border-radius: 30px;
+	font-family: sans-serif;
+	padding: 20px;
+}
+
+.bubble:before,
+.bubble:after {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+.speech:before {
+  left: 30px;
+  bottom: -43px;
+  border: 21px solid;
+  border-color: #333 transparent transparent #333;
+}
+
+.speech:after {
+  left: 33px;
+  bottom: -35px;
+  border: 21px solid;
+  border-color: #F5F5F5 transparent transparent #F5F5F5;
+}
