@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
-import { Typography, Image } from 'antd';
+import { Image } from 'antd';
 import './cloud.css';
 
 import * as T from '../modules/modules';
@@ -26,7 +26,6 @@ interface Props {
 }
 
 const TaskComponent: React.FC<Props> = ({ text }) => {
-
   return (
     <Task>
       <Image
