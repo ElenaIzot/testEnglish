@@ -16,9 +16,10 @@ const Task = styled.div`
 
 const CloudWithText = styled.div`
   font-family: Roboto;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   text-align: left;
+  text-decoration: underline dashed 1px;
 `;
 
 const CloudStyle = styled.div`
