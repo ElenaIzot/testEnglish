@@ -1,16 +1,11 @@
 import { arrayMove as dndKitArrayMove } from "@dnd-kit/sortable";
+
+export interface WordsForAnswer {
+  [containerForAnswer: string]: string[];
+}
 export interface PhraseForTranslate {
   phraseOnEnglish: string;
   phraseOnRussian: string;
-}
-
-export interface WordsForAnswer {
-  words: WordForAnswer[];
-}
-
-export interface WordForAnswer {
-  id: number;
-  text: string;
 }
 
 export const removeAtIndex = (array: string[], index: number) => {
