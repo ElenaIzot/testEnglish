@@ -1,5 +1,6 @@
 import React from "react";
-import { useDroppable } from "@dnd-kit/core";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
+import styled from "styled-components";
 import { rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
 import SortableWord from "./SortableWord";
@@ -9,23 +10,34 @@ interface Props {
   items: string[];
 }
 
+const DroppableWord = styled.div`
+  padding: 0px 10px;
+  border-bottom: 1px solid black;
+  padding-top: 5px;
+  min-width: 110px;
+  min-height: 60px;
+
+  :first-child {
+    margin-top: 20px;
+    border-top: 1px solid black;
+  }
+
+  :last-child {
+    margin-top: 20px;
+    border-bottom: none;
+  }
+`;
+
 const DroppableWords: React.FC<Props> = ({ id, items }) => {
   const { setNodeRef } = useDroppable({ id });
 
-  const droppableStyle = {
-    padding: "20px 10px",
-    borderBottom: "1px solid black",
-    borderRadius: "5px",
-    minWidth: 110
-  };
-
   return (
     <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
-      <div ref={setNodeRef} style={droppableStyle}>
-        {items.map((item: string) => (
+      <DroppableWord ref={setNodeRef} key={id}>
+           {items.map((item: string) => (
           <SortableWord text={item} />
         ))}
-      </div>
+      </DroppableWord>
     </SortableContext>
   );
 };

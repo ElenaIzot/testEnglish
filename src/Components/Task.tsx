@@ -1,8 +1,6 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import { Image } from 'antd';
-import './cloud.css';
 
 import * as T from '../modules/modules';
 
@@ -21,6 +19,39 @@ const CloudWithText = styled.div`
   text-align: left;
 `;
 
+const CloudStyle = styled.div`
+	position: relative;
+	width: 300px;
+	text-align: center;
+	margin: 0 20px 70px;
+	border: 3px solid #333;
+	border-radius: 30px;
+	font-family: sans-serif;
+	padding: 20px;
+
+  :before,
+  :after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  :before {
+    left: 30px;
+    bottom: -43px;
+    border: 21px solid;
+    border-color: #333 transparent transparent #333;
+  }
+
+  :after {
+    left: 33px;
+    bottom: -35px;
+    border: 21px solid;
+    border-color: #F5F5F5 transparent transparent #F5F5F5;
+  }
+`;
+
 interface Props {
   text: T.PhraseForTranslate,
 }
@@ -34,11 +65,11 @@ const TaskComponent: React.FC<Props> = ({ text }) => {
         src={'https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png'}
         alt='user'
       />
-      <div className="bubble speech">
+      <CloudStyle className="bubble speech">
         <CloudWithText>
           {text.phraseOnRussian}
         </CloudWithText>
-      </div>
+      </CloudStyle>
     </Task>
   );
 }
