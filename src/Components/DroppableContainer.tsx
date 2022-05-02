@@ -1,16 +1,18 @@
 import React from "react";
-import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { useDroppable } from "@dnd-kit/core";
 import styled from "styled-components";
 import { rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
 import SortableWord from "./SortableWord";
+
+import background from "../assets/background.jpg";
 
 interface Props {
   id: string;
   items: string[];
 }
 
-const DroppableWord = styled.div`
+const DroppableWrap = styled.div`
   padding: 0px 10px;
   border-bottom: 1px solid black;
   padding-top: 5px;
@@ -24,22 +26,29 @@ const DroppableWord = styled.div`
 
   :last-child {
     margin-top: 20px;
+    min-height: 106px;
     border-bottom: none;
+    background-image: url(${background});
+    background-size: 98%;
+    background-repeat: no-repeat;
+    background-position-y: -6px;
+    background-position-x: 1px;
   }
 `;
 
-const DroppableWords: React.FC<Props> = ({ id, items }) => {
+const DroppableContainer: React.FC<Props> = ({ id, items }) => {
   const { setNodeRef } = useDroppable({ id });
+
 
   return (
     <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
-      <DroppableWord ref={setNodeRef} key={id}>
-           {items.map((item: string) => (
+      <DroppableWrap ref={setNodeRef} key={id}>
+        {items.map((item: string) => (
           <SortableWord text={item} />
         ))}
-      </DroppableWord>
+      </DroppableWrap>
     </SortableContext>
   );
 };
 
-export default DroppableWords;
+export default DroppableContainer;

@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import { DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 
-import DroppableWords from "../DroppableWords";
+import DroppableContainer from "../DroppableContainer";
 import { phraseForTranslate, wordsForAnswer } from "../../data/dataApp";
 import { removeAtIndex, insertAtIndex } from "../../modules/modules";
 import { FieldForAnswer, CorrectedAnswer, WrongAnswer, ButtonCheck } from "./AnswerAndCheckStyle";
@@ -11,7 +11,7 @@ import { FieldForAnswer, CorrectedAnswer, WrongAnswer, ButtonCheck } from "./Ans
 import * as T from '../../modules/modules'
 
 const AnswerAndCheck = () => {
-  const [items, setItems] = useState<T.WordsForAnswer>(wordsForAnswer);
+  const [listsWords, setItems] = useState<T.WordsForAnswer>(wordsForAnswer);
   const [resultOfChecking, setResultOfChecking] = useState<boolean | undefined>(undefined);
 
   const sensors = useSensors(
@@ -42,14 +42,7 @@ const AnswerAndCheck = () => {
         const activeIndex = active.data.current.sortable.index;
         const overIndex = over.data.current?.sortable.index || 0;
 
-        return moveBetweenContainers(
-          items,
-          activeContainer,
-          activeIndex,
-          overContainer,
-          overIndex,
-          active.id
-        );
+        return moveBetweenContainers(items, activeContainer, activeIndex, overContainer, overIndex, active.id);
       });
     }
   };
@@ -79,14 +72,7 @@ const AnswerAndCheck = () => {
             )
           };
         } else {
-          newItems = moveBetweenContainers(
-            items,
-            activeContainer,
-            activeIndex,
-            overContainer,
-            overIndex,
-            active.id
-          );
+          newItems = moveBetweenContainers(items, activeContainer, activeIndex, overContainer, overIndex, active.id);
         }
 
         return newItems;
@@ -100,7 +86,7 @@ const AnswerAndCheck = () => {
     activeIndex: number,
     overContainer: string,
     overIndex: number,
-    item: string,
+    item: string
   ) => {
     return {
       ...items,
@@ -138,8 +124,8 @@ const AnswerAndCheck = () => {
         onDragOver={handleDragOver}
       >
         <FieldForAnswer>
-          {Object.keys(items).map((group) => (
-            <DroppableWords id={group} items={items[group]} key={group} />
+          {Object.keys(listsWords).map((group) => (
+            <DroppableContainer id={group} items={listsWords[group]} key={group} />
           ))}
         </FieldForAnswer>
       </DndContext>
@@ -148,7 +134,7 @@ const AnswerAndCheck = () => {
           <CorrectedAnswer>CORRECT</CorrectedAnswer>
           : <WrongAnswer>Something wrong!</WrongAnswer>
       }
-      <ButtonCheck onClick={() => handleCheckAnswer(items)}>
+      <ButtonCheck onClick={() => handleCheckAnswer(listsWords)}>
         Check
       </ButtonCheck>
     </>

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import TaskComponent from './Components/Task';
 import { phraseForTranslate } from './data/dataApp';
-import  AnswerAndCheck from "./Components/AnswerAndCheck/AnswerAndCheck";
+import AnswerAndCheck from "./Components/AnswerAndCheck/AnswerAndCheck";
 
 const AppWrapper = styled.div`
   width: 600px;
   min-height: 100vh;
-  margin: auto;
+  margin: 50px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,11 +25,9 @@ const Title = styled.h2`
 export default function App() {
   return (
     <AppWrapper>
-      <div>
-        <Title>
-          Translate this sentence
-        </Title>
-      </div>
+      <Title>
+        Translate this sentence
+      </Title>
       <TaskComponent text={phraseForTranslate} />
       <AnswerAndCheck />
     </AppWrapper >

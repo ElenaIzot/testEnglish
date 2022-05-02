@@ -1,8 +1,7 @@
 import * as T from '../modules/modules';
 
 export const phraseForTranslate: T.PhraseForTranslate = {
-  phraseOnEnglish: 'I think',
- // phraseOnEnglish: 'I think he made the right choice',
+  phraseOnEnglish: 'I think he made the right choice',
   phraseOnRussian: 'Я думаю он сделал правильный выбор',
 }
 

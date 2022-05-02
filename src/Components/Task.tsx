@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Image } from 'antd';
 
+import userIcon from '../assets/userIcon.png';
+
 import * as T from '../modules/modules';
 
 const Task = styled.div`
@@ -62,7 +64,7 @@ const TaskComponent: React.FC<Props> = ({ text }) => {
       <Image
         width={'200px'}
         preview={false}
-        src={'https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png'}
+        src={userIcon}
         alt='user'
       />
       <CloudStyle className="bubble speech">

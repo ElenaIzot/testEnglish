@@ -29,7 +29,7 @@ export const WrongAnswer = styled.div`
   font-weight: 400;
   font-size: 24px;
   color: #FF0000;
-  margin-bottom: 50px;
+  margin: 20px auto;
 `;
 
 export const CorrectedAnswer = styled.div`
@@ -38,5 +38,5 @@ export const CorrectedAnswer = styled.div`
   font-weight: 400;
   font-size: 24px;
   color: #10C504;
-  margin-bottom: 50px;
+  margin: 20px auto;
 `;
