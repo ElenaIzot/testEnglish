@@ -1,4 +1,4 @@
-# Application with the ability to add notes and read news.
+# Application for testing English knowledge.
 
 This project has been uploaded to [Open App](http://ElenaIzot.github.io/testEnglish).
 
